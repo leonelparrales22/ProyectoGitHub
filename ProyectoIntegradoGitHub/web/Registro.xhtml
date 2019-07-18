@@ -146,19 +146,19 @@ and open the template in the editor.
                     
                            <center>
                             <!--INICIO DEL FORMULARIO-->
-                            <form action="Registro_2.jsp" method="post" onsubmit="return validar();">
+                            <h:form onsubmit="return validar();">
                                 <font size="5">
                                     Datos obligatorios *<br/><br/>
                                         <table>
-                                            <tr><td>*Nombre:</td><td><input id="nombre" type="text" name="txtNombre" maxlength="15" required="true"/></td></tr>
-                                            <tr><td>*Apellido:&#160;</td><td><input id="apellido" type="text" name="txtApellido" maxlength="15" required="true"/></td></tr>
-                                            <tr><td>*Cédula:</td><td><input id="cedula" type="text" name="txtCedula" maxlength="10" required="true"/></td></tr>
-                                            <tr><td>*Email:</td><td><input id="email" type="email" name="txtEmail" maxlength="50" required="true"/></td></tr>
-                                            <tr><td>*Contraseña: &#160;</td><td><input id="contrasena" type="password" name="txtContrasena" maxlength="20" required="true"/></td></tr> 	
-                                            <tr><td></td><td><input type="submit" value="       Enviar datos       " name="Registrar"/></td></tr>
+                                            <tr><td>*Nombre:</td><td><h:inputText value="#{controladorUsuarios.miUsuario.nombre}" id="nombre" maxlength="15" required="true"/></td></tr>
+                                            <tr><td>*Apellido:&#160;</td><td><h:inputText value="#{controladorUsuarios.miUsuario.apellido}" id="apellido" maxlength="15" required="true"/></td></tr>
+                                            <tr><td>*Cédula:</td><td><h:inputText value="#{controladorUsuarios.miUsuario.cedula}" id="cedula" maxlength="10" required="true"/></td></tr>
+                                            <tr><td>*Email:</td><td><h:inputText value="#{controladorUsuarios.miUsuario.email}" id="email" maxlength="50" required="true"/></td></tr>
+                                            <tr><td>*Contraseña: &#160;</td><td><h:inputSecret value="#{controladorUsuarios.miUsuario.contrasenia}" id="contrasena" maxlength="20" required="true"/></td></tr> 	
+                                            <tr><td></td><td><h:commandButton action="#{controladorUsuarios.registro()}" value="       Enviar datos       "/></td></tr>
                                         </table>	
                                 </font>		
-                            </form>    		
+                            </h:form>    		
                         </center>
                     
                     

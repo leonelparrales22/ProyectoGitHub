@@ -36,7 +36,7 @@ public class ControladorUsuarios {
     
     private String email;
     private String contrasenia;
-    private Usuario miUsuario;
+    private Usuario miUsuario=new Usuario();
 
     public Usuario getMiUsuario() {
         return miUsuario;
@@ -106,8 +106,6 @@ public class ControladorUsuarios {
     }
     
     public String registro() {
-
-        String devolver = "";
         try {
             Connection cnx;
             Statement st;
@@ -116,7 +114,6 @@ public class ControladorUsuarios {
             cnx = ConexionDB.getConneccion();
             st = cnx.createStatement();
             rs = st.executeQuery("INSERT INTO USUARIO VALUES (NULL,'"+miUsuario.getNombre()+"','"+miUsuario.getApellido()+"','+"+miUsuario.getCedula()+"','"+miUsuario.getEmail()+"','"+miUsuario.getContrasenia()+"','1');");
-
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
