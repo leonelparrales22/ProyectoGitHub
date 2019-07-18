@@ -20,37 +20,30 @@ import java.util.logging.Logger;
  * @author Leonel
  */
 public class Main {
-
-    public static void main(String[] args) {
-//        try {
-//            Connection cnx;
-//            Statement st;
-//            ResultSet rs;
-//            PreparedStatement pst = null;
-//            cnx = ConexionDB.getConneccion();
-//            st = cnx.createStatement();
-//
-//            rs = st.executeQuery("SELECT provincia.nombre_provincia, MAX(emcondise+emcondisp+omcondise+omcondisp+ehcondisp+ehcondise+ohcondisp+ohcondise) AS NUMERO_DISCAPACITADOS "
-//                    + "FROM INFORMACION_EMPRESAS, PROVINCIA "
-//                    + "WHERE INFORMACION_EMPRESAS.COD_PROV=PROVINCIA.COD_PROV "
-//                    + "AND WGRUENC=2 "
-//                    + "GROUP BY provincia.nombre_provincia");
-//
-//            //Nombre de las columnas:
-//            ResultSetMetaData rsmd = rs.getMetaData();
-//            System.out.println(rsmd.getColumnName(1) + "\t" + rsmd.getColumnName(2));
-//
-//            //Registros
-//            while (rs.next()) {
-//                System.out.println(rs.getString(1) + "\t" + rs.getString(2));
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
-        ControladorUsuarios c=new ControladorUsuarios();
     
+    public static void main(String[] args) {
+        try {
+            String email = "root";
+            String contrasenia = "root";
+            
+            Connection cnx;
+            Statement st;
+            ResultSet rs;
+            PreparedStatement pst = null;
+            cnx = ConexionDB.getConneccion();
+            st = cnx.createStatement();
+            rs = st.executeQuery("SELECT * FROM USUARIO\n"
+                    + "WHERE email='" + email + "'\n"
+                    + "AND contrasenia='" + contrasenia + "'");
+            
+            while (rs.next()) {
+                System.out.println(rs.getString(1) + rs.getString(2));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
-
+    
 }

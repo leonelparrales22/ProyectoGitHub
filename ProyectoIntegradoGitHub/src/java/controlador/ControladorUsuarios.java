@@ -6,6 +6,7 @@
 package controlador;
 
 import conexion.ConexionDB;
+import modelo.Usuario;
 import javax.servlet.http.HttpSession;
 
 import conexion.Main;
@@ -35,7 +36,16 @@ public class ControladorUsuarios {
     
     private String email;
     private String contrasenia;
+    private Usuario miUsuario;
 
+    public Usuario getMiUsuario() {
+        return miUsuario;
+    }
+
+    public void setMiUsuario(Usuario miUsuario) {
+        this.miUsuario = miUsuario;
+    }
+   
     public String getEmail() {
         return email;
     }
@@ -94,4 +104,24 @@ public class ControladorUsuarios {
         }
         return "Usuario_No_Encontrado.xhtml";
     }
+    
+    public String registro() {
+
+        String devolver = "";
+        try {
+            Connection cnx;
+            Statement st;
+            ResultSet rs;
+            PreparedStatement pst = null;
+            cnx = ConexionDB.getConneccion();
+            st = cnx.createStatement();
+            rs = st.executeQuery("INSERT INTO USUARIO VALUES (NULL,'"+miUsuario.getNombre()+"','"+miUsuario.getApellido()+"','+"+miUsuario.getCedula()+"','"+miUsuario.getEmail()+"','"+miUsuario.getContrasenia()+"','1');");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Registro_Completo.xhtml";
+    }
+    
+    
 }
