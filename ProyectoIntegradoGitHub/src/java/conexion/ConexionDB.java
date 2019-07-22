@@ -16,9 +16,17 @@ public class ConexionDB {
      try {
           
             Class.forName("oracle.jdbc.driver.OracleDriver");  //DRIVER DE SQL DEVELOPER
-            String myDB = "jdbc:oracle:thin:@172.17.42.63:1521:orclupsoltp";//URL DE SQL DEVELOPER
-            String usuario="p54g3_oltp_hr";
-            String password="g03_4263";
+            //UNIVERSIDAD
+            //String myDB = "jdbc:oracle:thin:@172.17.42.63:1521:orclupsoltp";//URL DE SQL DEVELOPER
+            //String usuario="p54g3_oltp_hr";
+            //String password="g03_4263";
+            
+            //LEONEL PC
+            String myDB = "jdbc:oracle:thin:@localhost:1521:xe";//URL DE SQL DEVELOPER
+            String usuario="Leonel";
+            String password="Pinguino2233";
+            
+            
             Connection cnx = DriverManager.getConnection(myDB,usuario,password);
             return cnx;
             
