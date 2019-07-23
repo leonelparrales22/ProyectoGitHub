@@ -21,28 +21,14 @@ import java.util.logging.Logger;
  */
 public class Main {
     
-    public static void main(String[] args) {
-        try {
-            String email = "root";
-            String contrasenia = "root";
-            
-            Connection cnx;
+    public static void main(String[] args) throws SQLException {
+        Connection cnx;
             Statement st;
             ResultSet rs;
             PreparedStatement pst = null;
             cnx = ConexionDB.getConneccion();
             st = cnx.createStatement();
-            rs = st.executeQuery("SELECT * FROM USUARIO\n"
-                    + "WHERE email='" + email + "'\n"
-                    + "AND contrasenia='" + contrasenia + "'");
-            
-            while (rs.next()) {
-                System.out.println(rs.getString(1) + rs.getString(2));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            st.executeUpdate("INSERT INTO USUARIO VALUES (NULL,'Diego','Gonzalez','1725670390','dgonzalezq2@est.ups.edu.ec','12345','1')");
         
     }
     

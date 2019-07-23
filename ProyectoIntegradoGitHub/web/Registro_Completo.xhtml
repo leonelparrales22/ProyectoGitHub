@@ -5,14 +5,226 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Registro Completo</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>
-            Registro completo!!!!!
-        </div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+
+   <!--- Basic Page Needs
+   ================================================== -->
+   <meta charset="utf-8"/>
+	<title>Iniciar Sesión</title>
+	<meta name="description" content=""/>  
+	<meta name="author" content=""/>
+
+   <!-- Mobile Specific Metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+	<!-- CSS
+    ================================================== -->
+   <link rel="stylesheet" href="css/base.css"/>
+	<link rel="stylesheet" href="css/main.css"/>
+   <link rel="stylesheet" href="css/media-queries.css"/>         
+
+   <!-- Script
+   =================================================== -->
+	<script src="js/modernizr.js"></script>
+
+   <!-- Favicons
+	=================================================== -->
+	<link rel="shortcut icon" href="favicon.png" />
+
+</h:head>
+
+<h:body>
+
+   <div id="top"></div>
+   <div id="preloader"> 
+	   <div id="status">
+         <img src="images/loader.gif" height="60" width="60" alt=""/>
+         <div class="loader">Loading...</div>
+      </div>
+   </div>
+
+   <!-- Header
+   =================================================== -->
+   <header id="main-header">
+
+   	<div class="row header-inner">
+
+	      <div class="logo">
+	         <a href="index.xhtml">Puremedia.</a>
+	      </div>
+
+	      <nav id="nav-wrap">         
+	         
+	         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
+	         	<span class='menu-text'>Show Menu</span>
+	         	<span class="menu-icon"></span>
+	         </a>
+         	<a class="mobile-btn" href="#" title="Hide navigation">
+         		<span class='menu-text'>Hide Menu</span>
+         		<span class="menu-icon"></span>
+         	</a>         
+
+	         <ul id="nav" class="nav">
+	            <li><a href="index.xhtml#hero">Inicio.</a></li>
+		    <li><a href="index.xhtml#portfolio">Reportes.</a></li>
+	            <li><a href="Registro.xhtml">Registrate.</a></li>
+	            <li class="current"><a href="Login.xhtml">Iniciar Sesión.</a></li>
+	            <li><a href="index.xhtml#about">¿Quiénes Somos?.</a></li>	        
+	            <li><a href="index.xhtml#contact">Contáctenos</a></li>
+	         </ul> 
+
+	      </nav> <!-- /nav-wrap -->	      
+
+	   </div> <!-- /header-inner -->
+
+   </header>
+
+
+   <!-- Page Title
+   ================================================== -->
+   <section id="page-title">	
+   	  
+		<div class="row">
+
+			<div class="twelve columns">
+
+				<h1>Registro<span>.</span></h1>
+				<p>Datos ingresados correctamente.</p>
+
+			</div>			    
+
+		</div> <!-- /row -->	   
+
+   </section> <!-- /page-title -->
+
+
+   <!-- Content
+   ================================================== -->
+   <section id="content">
+
+   	<div class="row portfolio-content">
+
+	   	<div class="entry tab-whole nine columns centered">
+
+	         <header class="entry-header">
+
+					<h1 class="entry-title">
+							Ahora puede iniciar sesión en nuestro portal.
+					</h1> 				 
+						
+					<div class="entry-meta">
+						<ul>
+							<!--<li>July 12, 2014</li>
+							<span class="meta-sep">*</span>	-->							
+							<li>
+								<!-- <a rel="skills tag" title="" href="#">--> <br/> 
+								 <!-- <a rel="skills tag" title="" href="#">Photography</a>-->
+							</li>
+							<!--<span class="meta-sep">*</span>
+							<li><a rel="client" title="" href="#">styleshout</a></li>-->	
+						</ul>
+					</div> 
+						 
+				</header>
+				
+				
+<center>
+			
+		<font face="georgia" size="4"></font>
+		<a href="Login.xhtml">Iniciar Sesión</a>
+</center>
+
+				
+
+	         </div> <!-- /portfolio-wrapper -->
+
+	      </div> <!-- /nine -->
+
+		 <!-- /more-projects --> 
+
+   </section> <!-- /content -->  
+
+
+   
+    <!-- Footer
+       ================================================== -->
+        <footer>
+
+            <div class="row">       
+
+                <div class="six columns tab-whole footer-about">
+
+                    <h3>Acerca de CCE</h3>
+
+                    <p>El 10 de mayo de 2019, el grupo 3 ha comenzado a reunir información sobre esta temática,
+                        la cual ha dado por resultado interesante para todo el público en general. Por tal motivo
+                        ha nacido el nombre de IRIS como identificador del grupo.
+                    </p>
+
+                </div> <!-- /footer-about -->
+
+                <div class="six columns tab-whole right-cols">
+
+                    <div class="row">
+
+                        <div class="columns">
+                            <h3 class="address">Contáctanos</h3>
+                            <p>
+                                Av.6 de Diciembre y Av.Patria<br/>
+                                Quito, Pichincha<br/>
+                                EC170403
+                            </p>
+
+                            <ul>
+                                <li>(02) 222-1006</li>
+                                <li>(593) 988005123</li>
+                                <li><a href="mailto:someone@puremedia.com">leonelparrales@gmail.com</a></li>
+                            </ul>                  
+                        </div> <!-- /columns -->             
+
+                        <div class="columns last">
+                            <h3 class="contact">Síguenos</h3>
+
+                            <ul>
+                                <li><a href="https://www.facebook.com/casadelaculturaecuatorianabenjamincarrion/">Facebook</a></li>
+                                <li><a href="https://twitter.com/CasadelaCultura">Twitter</a></li>
+                                <li><a href="https://www.flickr.com/photos/158642974@N04/">Flickr</a></li>
+                                <li><a href="https://www.youtube.com/user/ccecasadelacultura">Youtube</a></li>
+                                <li><a href="https://www.instagram.com/explore/locations/1506663/casa-de-la-cultura-ecuatoriana-benjamin-carrion">Instagram</a></li>
+                            </ul>
+
+                        </div> <!-- /columns --> 
+
+                    </div> <!-- /Row(nested) -->
+
+                </div>
+
+                <p class="copyright">Gonzalez Diego, Ortiz Arnaldo, Parrales Leonel, Tapia Wilian. <a href="index.jsp">Index.</a></p>        
+
+                <div id="go-top">
+                    <a class="smoothscroll" title="Back to Top" href="#hero"><span>Top</span><i class="fa fa-long-arrow-up"></i></a>
+                </div>
+
+
+
+            </div> <!-- /row -->
+
+        </footer> <!-- /footer -->
+
+   <!-- Java Script
+   ================================================== -->
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ 
+   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>   
+   <script src="js/jquery.flexslider.js"></script>
+   <script src="js/jquery.fittext.js"></script>
+   <script src="js/backstretch.js"></script> 
+   <script src="js/waypoints.js"></script>  
+   <script src="js/main.js"></script>
+   
+</h:body>
+
 </html>

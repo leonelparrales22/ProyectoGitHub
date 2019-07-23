@@ -131,48 +131,53 @@ and open the template in the editor.
                     </header>
 
 
-                    
 
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                           <center>
-                            <!--INICIO DEL FORMULARIO-->
-                            <h:form onsubmit="return validar();">
-                                <font size="5">
-                                    Datos obligatorios *<br/><br/>
-                                        <table>
-                                            <tr><td>*Nombre:</td><td><h:inputText value="#{controladorUsuarios.miUsuario.nombre}" id="nombre" maxlength="15" required="true"/></td></tr>
-                                            <tr><td>*Apellido:&#160;</td><td><h:inputText value="#{controladorUsuarios.miUsuario.apellido}" id="apellido" maxlength="15" required="true"/></td></tr>
-                                            <tr><td>*Cédula:</td><td><h:inputText value="#{controladorUsuarios.miUsuario.cedula}" id="cedula" maxlength="10" required="true"/></td></tr>
-                                            <tr><td>*Email:</td><td><h:inputText value="#{controladorUsuarios.miUsuario.email}" id="email" maxlength="50" required="true"/></td></tr>
-                                            <tr><td>*Contraseña: &#160;</td><td><h:inputSecret value="#{controladorUsuarios.miUsuario.contrasenia}" id="contrasena" maxlength="20" required="true"/></td></tr> 	
-                                            <tr><td></td><td><h:commandButton action="#{controladorUsuarios.registro()}" value="       Enviar datos       "/></td></tr>
-                                        </table>	
-                                </font>		
-                            </h:form>    		
-                        </center>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
 
-                 
+
+
+
+
+
+
+
+
+
+
+
+                    <center>
+                        <!--INICIO DEL FORMULARIO-->
+                        <h:form onsubmit="return validar();">
+                            <font size="5">
+                                Datos obligatorios *<br/><br/>
+                                <table>
+                                    <tr><td>*Nombre:</td><td><h:inputText value="#{controladorUsuarios.miUsuario.nombre}" id="nombre" maxlength="15" required="true"/></td></tr>
+                                    <h:messages for='nombre'/>
+                                    <tr><td>*Apellido:&#160;</td><td><h:inputText value="#{controladorUsuarios.miUsuario.apellido}" id="apellido" maxlength="15" required="true"/></td></tr>
+                                    <h:messages for='apellido'/>
+                                    <tr><td>*Cédula:</td><td><h:inputText value="#{controladorUsuarios.miUsuario.cedula}" id="cedula" maxlength="10" required="true" validator="#{validadores.validarCedula}"/></td></tr>
+                                    <h:messages for='cedula'/>
+                                    <tr><td>*Email:</td><td><h:inputText value="#{controladorUsuarios.miUsuario.email}" id="email" maxlength="50" required="true" validator="#{validadores.validarEmail}"/></td></tr>
+                                    <h:messages for='email'/>
+                                    <tr><td>*Contraseña: &#160;</td><td><h:inputSecret value="#{controladorUsuarios.miUsuario.contrasenia}" id="contrasena" maxlength="20" required="true"/></td></tr> 	
+                                    <h:messages for='contrasena'/>
+                                    <tr><td></td><td><h:commandButton action="#{controladorUsuarios.registro()}" value="       Enviar datos       "/></td></tr>
+                                </table>	
+                            </font>		
+                        </h:form>    		
+                    </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 </div> <!-- /portfolio-wrapper -->

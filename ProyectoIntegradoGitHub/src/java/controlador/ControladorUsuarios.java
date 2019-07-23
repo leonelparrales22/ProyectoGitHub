@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
-
 /**
  *
  * @author Leonel
@@ -33,10 +32,9 @@ public class ControladorUsuarios {
     /**
      * Creates a new instance of ControladorUsuarios
      */
-    
     private String email;
     private String contrasenia;
-    private Usuario miUsuario=new Usuario();
+    private Usuario miUsuario = new Usuario();
 
     public Usuario getMiUsuario() {
         return miUsuario;
@@ -45,7 +43,7 @@ public class ControladorUsuarios {
     public void setMiUsuario(Usuario miUsuario) {
         this.miUsuario = miUsuario;
     }
-   
+
     public String getEmail() {
         return email;
     }
@@ -61,7 +59,7 @@ public class ControladorUsuarios {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-    
+
     public ControladorUsuarios() {
 
     }
@@ -83,19 +81,17 @@ public class ControladorUsuarios {
 //                    + "AND WGRUENC=2 "
 //                    + "GROUP BY provincia.nombre_provincia");
             rs = st.executeQuery("SELECT * FROM USUARIO\n"
-                    + "WHERE email='"+this.email+"'\n"
-                    + "AND contrasenia='"+this.contrasenia+"'");
+                    + "WHERE email='" + this.email + "'\n"
+                    + "AND contrasenia='" + this.contrasenia + "'");
 
             //Nombre de las columnas:
             //ResultSetMetaData rsmd = rs.getMetaData();
             //System.out.println(rsmd.getColumnName(1) + "\t" + rsmd.getColumnName(2));
-          
-
             //Registros
             while (rs.next()) {
                 HttpSession hs = ControladorSession.getSession();
                 hs.setAttribute("usuario", email);
-                
+
                 return "imagen.xhtml";
             }
 
@@ -104,7 +100,7 @@ public class ControladorUsuarios {
         }
         return "Usuario_No_Encontrado.xhtml";
     }
-    
+
     public String registro() {
         try {
             Connection cnx;
@@ -113,12 +109,13 @@ public class ControladorUsuarios {
             PreparedStatement pst = null;
             cnx = ConexionDB.getConneccion();
             st = cnx.createStatement();
-            rs = st.executeQuery("INSERT INTO USUARIO VALUES (NULL,'"+miUsuario.getNombre()+"','"+miUsuario.getApellido()+"','+"+miUsuario.getCedula()+"','"+miUsuario.getEmail()+"','"+miUsuario.getContrasenia()+"','1');");
+            //st.executeUpdate("INSERT INTO USUARIO VALUES (NULL,'" + miUsuario.getNombre() + "','" + miUsuario.getApellido() + "','+" + miUsuario.getCedula() + "','" + miUsuario.getEmail() + "','" + miUsuario.getContrasenia() + "','1')");
+            st.executeUpdate("INSERT INTO USUARIO VALUES (NULL,'"+miUsuario.getNombre()+"','"+miUsuario.getApellido()+"','"+miUsuario.getCedula()+"','"+miUsuario.getEmail()+"','"+miUsuario.getContrasenia()+"','1')");
+
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Registro_Completo.xhtml";
     }
-    
-    
+
 }
