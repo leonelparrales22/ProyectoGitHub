@@ -96,7 +96,7 @@ public class ControladorUsuarios {
                 HttpSession hs = ControladorSession.getSession();
                 hs.setAttribute("usuario", email);
                 
-                return "Usuario_Encontrado.xhtml";
+                return "imagen.xhtml";
             }
 
         } catch (SQLException ex) {
