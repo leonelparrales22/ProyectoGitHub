@@ -1,0 +1,203 @@
+-DIMENSIONES DIEGO
+CREATE OR REPLACE PROCEDURE SUBIR_TH2_2013
+IS 
+BEGIN
+DECLARE
+
+    /*CURSOR C_TH_UBIC IS 
+    SELECT ID_REGION, ID_PROVINCIA 
+    FROM D_UBICACION
+    WHERE (NOMBRE_REGION <> 'NO REGIÓN' AND NOMBRE_REGION NOT LIKE '%NO DELIMITADAS%') --V_ANIO 
+    AND ID_CANTON IS NULL 
+    AND ID_PARROQUIA IS NULL;
+
+        
+    CURSOR C_TH_TIPO_SERVICIO IS 
+    SELECT * 
+    FROM D_TIPO_SERVICIO
+    ORDER BY ID_TIPO_SERVICIO;*/
+    
+    
+    CURSOR C_IE IS 
+    SELECT WGRUENC, COUNT(*), SUM(INGXALQU+INGXCOMI+INGXSERVP), SUM(VTEE+VTAGUA+GASOPERA+TOTIMP)    
+    FROM INFORMACION_EMPRESAS 
+    WHERE CODANIO=2014
+    GROUP BY WGRUENC;
+    
+    CURSOR C_IE2 IS 
+    SELECT CODPROV,WGRUENC,COUNT(*), SUM(INGXALQU+INGXCOMI+INGXSERVP), SUM(VTEE+VTAGUA+GASOPERA+TOTIMP)     
+    FROM INFORMACION_EMPRESAS 
+    WHERE CODANIO=2014
+    GROUP BY CODPROV,WGRUENC;
+    
+    --------------- definición de registros
+    /*R_UBIC C_TH_UBIC%ROWTYPE;
+    R_TIPO_SERVICIO C_TH_TIPO_SERVICIO%ROWTYPE;*/
+    V_wgruenc INFORMACION_EMPRESAS.VTEE%type;
+    V_ingresos INFORMACION_EMPRESAS.VTEE%type;
+    V_gastos INFORMACION_EMPRESAS.VTEE%type;
+    V_contador  INFORMACION_EMPRESAS.OTOTALHOM%type;
+
+
+    V_cod_prov INFORMACION_EMPRESAS.CODPROV%type;
+    V_wgruenc2 INFORMACION_EMPRESAS.VTEE%type;
+    V_ingresos2 INFORMACION_EMPRESAS.VTEE%type;
+    V_gastos2 INFORMACION_EMPRESAS.VTEE%type;
+    V_contador2  INFORMACION_EMPRESAS.OTOTALHOM%type;
+
+
+
+BEGIN
+OPEN C_IE;
+LOOP
+FETCH C_IE INTO V_wgruenc,V_ingresos,V_gastos,V_contador;
+EXIT WHEN C_IE%notfound;
+
+
+    INSERT INTO TH_HRS_2 VALUES (NULL,3,NULL,V_wgruenc,V_ingresos,V_contador,V_gastos);    
+
+BEGIN
+    OPEN C_IE2;
+   LOOP
+    FETCH C_IE2 INTO V_cod_prov,V_wgruenc2,V_ingresos2,V_gastos2,V_contador2;
+    INSERT INTO TH_HRS_2 VALUES (NULL,3,V_cod_prov,V_wgruenc2,V_ingresos2,V_contador2,V_gastos2);  
+      EXIT WHEN C_IE2%notfound;  
+   END LOOP;
+    CLOSE C_IE2;
+   COMMIT;   
+END C_IE2;
+END LOOP;
+
+CLOSE C_IE;
+END C_IE;
+COMMIT;
+END SUBIR_TH2_2013;
+
+EXEC SUBIR_TH2_2013;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------
+
+
+
+
+
+
+
+
+--DIMENSIONES LEONEL
+CREATE OR REPLACE PROCEDURE SUBIR_TH_2013
+IS 
+BEGIN
+DECLARE
+
+    /*CURSOR C_TH_UBIC IS 
+    SELECT ID_REGION, ID_PROVINCIA 
+    FROM D_UBICACION
+    WHERE (NOMBRE_REGION <> 'NO REGIÓN' AND NOMBRE_REGION NOT LIKE '%NO DELIMITADAS%') --V_ANIO 
+    AND ID_CANTON IS NULL 
+    AND ID_PARROQUIA IS NULL;
+
+        
+    CURSOR C_TH_TIPO_SERVICIO IS 
+    SELECT * 
+    FROM D_TIPO_SERVICIO
+    ORDER BY ID_TIPO_SERVICIO;*/
+    
+    
+    CURSOR C_IE IS 
+    SELECT WGRUENC,SUM(VTEE + VTAGUA), SUM(TOTALHOM), SUM(TOTALMUJ),SUM(suesaobh + suesaegh + suesaeho), SUM(suesaobm + suesaegm + suesaemu), COUNT(*), SUM(ototalhom+etotalhom), SUM(ototalmuj+etotalmuj)   
+    FROM INFORMACION_EMPRESAS 
+    WHERE CODANIO=2014
+    GROUP BY WGRUENC;
+    
+    CURSOR C_IE2 IS 
+    SELECT CODPROV,WGRUENC,SUM(VTEE + VTAGUA), SUM(TOTALHOM), SUM(TOTALMUJ),SUM(suesaobh + suesaegh + suesaeho), SUM(suesaobm + suesaegm + suesaemu), COUNT(*), SUM(ototalhom+etotalhom), SUM(ototalmuj+etotalmuj)   
+    FROM INFORMACION_EMPRESAS 
+    WHERE CODANIO=2014
+    GROUP BY CODPROV,WGRUENC;
+    
+    --------------- definición de registros
+    /*R_UBIC C_TH_UBIC%ROWTYPE;
+    R_TIPO_SERVICIO C_TH_TIPO_SERVICIO%ROWTYPE;*/
+    
+    V_tipo_servicio INFORMACION_EMPRESAS.WGRUENC%type;
+    V_total_gastos_sb INFORMACION_EMPRESAS.VTEE%type;
+    V_num_trab_h INFORMACION_EMPRESAS.VTEE%type;
+    V_num_trab_m INFORMACION_EMPRESAS.VTEE%type;
+    V_sueldos_h  INFORMACION_EMPRESAS.ETOTALMUJ%type;
+    V_sueldos_m  INFORMACION_EMPRESAS.OTOTALHOM%type;
+    V_contador  INFORMACION_EMPRESAS.OTOTALHOM%type;
+    V_eo_h  INFORMACION_EMPRESAS.OTOTALHOM%type;
+    V_eo_m  INFORMACION_EMPRESAS.OTOTALHOM%type;
+
+
+    V_cod_prov INFORMACION_EMPRESAS.CODPROV%type;
+    V_tipo_servicio2 INFORMACION_EMPRESAS.WGRUENC%type;
+    V_total_gastos_sb2 INFORMACION_EMPRESAS.VTEE%type;
+    V_num_trab_h2 INFORMACION_EMPRESAS.VTEE%type;
+    V_num_trab_m2 INFORMACION_EMPRESAS.VTEE%type;
+    V_sueldos_h2  INFORMACION_EMPRESAS.ETOTALMUJ%type;
+    V_sueldos_m2  INFORMACION_EMPRESAS.OTOTALHOM%type;
+    V_contador2  INFORMACION_EMPRESAS.OTOTALHOM%type;
+    V_eo_h2  INFORMACION_EMPRESAS.OTOTALHOM%type;
+    V_eo_m2  INFORMACION_EMPRESAS.OTOTALHOM%type;
+
+
+
+BEGIN
+OPEN C_IE;
+LOOP
+FETCH C_IE INTO V_tipo_servicio,V_total_gastos_sb,V_num_trab_h,V_num_trab_m,V_sueldos_h,V_sueldos_m,V_contador,V_eo_h,V_eo_m;
+EXIT WHEN C_IE%notfound;
+
+
+    INSERT INTO TH_HRS_1 VALUES (
+    NULL,2,NULL,V_tipo_servicio,V_num_trab_h,V_num_trab_m,V_total_gastos_sb,V_sueldos_h,V_sueldos_m,V_eo_h,V_eo_m,V_contador);    
+
+BEGIN
+    OPEN C_IE2;
+   LOOP
+    FETCH C_IE2 INTO V_cod_prov,V_tipo_servicio2,V_total_gastos_sb2,V_num_trab_h2,V_num_trab_m2,V_sueldos_h2,V_sueldos_m2,V_contador2,V_eo_h2,V_eo_m2;
+    INSERT INTO TH_HRS_1 VALUES (
+    NULL,2,V_cod_prov,V_tipo_servicio2,V_num_trab_h2,V_num_trab_m2,V_total_gastos_sb2,V_sueldos_h2,V_sueldos_m2,V_eo_h2,V_eo_m2,V_contador2);  
+      EXIT WHEN C_IE2%notfound;  
+   END LOOP;
+    CLOSE C_IE2;
+   COMMIT;   
+END C_IE2;
+END LOOP;
+
+CLOSE C_IE;
+END C_IE;
+COMMIT;
+END SUBIR_TH_2013;
+
+EXEC SUBIR_TH_2013;
+
+
+
+
+
+
+
