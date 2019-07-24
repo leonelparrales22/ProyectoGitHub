@@ -1,0 +1,200 @@
+create or replace function carga_th_1_g1(VANIO INT)  --g1
+return number
+is 
+    cursor c_th_ubic is 
+    select ID_D_PROVINCIA
+    from d_PROVINCIA ORDER BY ID_D_PROVINCIA;
+
+    cursor c_th_SERV is 
+    select ID_D_SERVICIO
+    from d_SERVICIO
+    order by id_D_SERVICIO ;
+
+    cursor c_th_tip_empleado is 
+    select id_d_tip_empleado from d_tip_empleado
+    order by id_d_tip_empleado;
+
+    cursor c_th_grup_serv is 
+    select id_d_grup from d_grup_serv
+    order by id_d_grup;
+
+    cursor c_th_tamanio is 
+    select tamaño from tam_empr
+    order by tamaño;
+
+    --------------- definición de registros
+    r_ubic c_th_ubic%rowtype;
+    r_servicio c_th_SERV%rowtype;
+    r_empleado c_th_tip_empleado%rowtype;
+    r_grup_ser c_th_grup_serv%rowtype;
+    r_tamanio c_th_tamanio%rowtype;
+    --------------------
+    v_ubic_cont int := 0 ; 
+   v_serv_cont int := 0 ;
+
+BEGIN 
+--CARGA DE DATOS
+OPEN c_th_ubic;
+--INICIA CAPTURA REG
+FETCH c_th_ubic INTO r_ubic;
+WHILE c_th_ubic%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,null,null,null,null,null,null,null,null,null,vanio);
+----------------------        
+OPEN c_th_SERV;
+
+FETCH c_th_SERV INTO r_servicio;
+WHILE c_th_SERV%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,r_servicio.id_d_servicio,null,null,null,null,null,null,null,null,vanio);
+
+    FETCH c_th_SERV INTO r_servicio;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_SERV;
+--2
+OPEN c_th_tip_empleado;
+
+FETCH c_th_tip_empleado INTO r_empleado;
+WHILE c_th_tip_empleado%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,null,r_empleado.id_d_tip_empleado,null,null,null,null,null,null,null,vanio);
+
+    FETCH c_th_tip_empleado INTO r_empleado;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_tip_empleado;
+--3
+OPEN c_th_grup_serv;
+
+FETCH c_th_grup_serv INTO r_grup_ser;
+WHILE c_th_grup_serv%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,null,r_empleado.id_d_tip_empleado,r_grup_ser.id_d_grup,null,null,null,null,null,null,vanio);
+
+    FETCH c_th_grup_serv INTO r_grup_ser;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_grup_serv;
+--4
+OPEN c_th_tamanio;
+
+FETCH c_th_tamanio INTO r_tamanio;
+WHILE c_th_tamanio%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,null,r_empleado.id_d_tip_empleado,r_grup_ser.id_d_grup,r_tamanio.tamaño,(select sum(etotalmuj)from intermediario),null,null,null,null,vanio);
+
+    FETCH c_th_tamanio INTO r_tamanio;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_tamanio;
+
+-------*****-----------------
+    FETCH c_th_ubic INTO r_ubic;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_ubic;
+---------
+COMMIT;
+RETURN v_serv_cont;
+END;
+create or replace function carga_th_1_g1(VANIO INT)  --g1
+return number
+is 
+    cursor c_th_ubic is 
+    select ID_D_PROVINCIA
+    from d_PROVINCIA ORDER BY ID_D_PROVINCIA;
+
+    cursor c_th_SERV is 
+    select ID_D_SERVICIO
+    from d_SERVICIO
+    order by id_D_SERVICIO ;
+
+    cursor c_th_tip_empleado is 
+    select id_d_tip_empleado from d_tip_empleado
+    order by id_d_tip_empleado;
+
+    cursor c_th_grup_serv is 
+    select id_d_grup from d_grup_serv
+    order by id_d_grup;
+
+    cursor c_th_tamanio is 
+    select tamaño from tam_empr
+    order by tamaño;
+
+    --------------- definición de registros
+    r_ubic c_th_ubic%rowtype;
+    r_servicio c_th_SERV%rowtype;
+    r_empleado c_th_tip_empleado%rowtype;
+    r_grup_ser c_th_grup_serv%rowtype;
+    r_tamanio c_th_tamanio%rowtype;
+    --------------------
+    v_ubic_cont int := 0 ; 
+   v_serv_cont int := 0 ;
+
+BEGIN 
+--CARGA DE DATOS
+OPEN c_th_ubic;
+--INICIA CAPTURA REG
+FETCH c_th_ubic INTO r_ubic;
+WHILE c_th_ubic%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,null,null,null,null,null,null,null,null,null,vanio);
+----------------------        
+OPEN c_th_SERV;
+
+FETCH c_th_SERV INTO r_servicio;
+WHILE c_th_SERV%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,r_servicio.id_d_servicio,null,null,null,null,null,null,null,null,vanio);
+
+    FETCH c_th_SERV INTO r_servicio;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_SERV;
+--2
+OPEN c_th_tip_empleado;
+
+FETCH c_th_tip_empleado INTO r_empleado;
+WHILE c_th_tip_empleado%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,null,r_empleado.id_d_tip_empleado,null,null,null,null,null,null,null,vanio);
+
+    FETCH c_th_tip_empleado INTO r_empleado;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_tip_empleado;
+--3
+OPEN c_th_grup_serv;
+
+FETCH c_th_grup_serv INTO r_grup_ser;
+WHILE c_th_grup_serv%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,null,r_empleado.id_d_tip_empleado,r_grup_ser.id_d_grup,null,null,null,null,null,null,vanio);
+
+    FETCH c_th_grup_serv INTO r_grup_ser;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_grup_serv;
+--4
+OPEN c_th_tamanio;
+
+FETCH c_th_tamanio INTO r_tamanio;
+WHILE c_th_tamanio%FOUND LOOP 
+    INSERT INTO tabla_hechos_1(id_tiempo,id_d_provincia,id_servicio,id_d_tip_empleado,id_d_grup,tam,total_emp_m,total_emp_h,tot_sal_h,tot_sal_m,tot_ingreso,anio)
+        VALUES (null,r_ubic.id_d_provincia,null,r_empleado.id_d_tip_empleado,r_grup_ser.id_d_grup,r_tamanio.tamaño,(select sum(etotalmuj)from intermediario),null,null,null,null,vanio);
+
+    FETCH c_th_tamanio INTO r_tamanio;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_tamanio;
+        
+-------*****-----------------
+    FETCH c_th_ubic INTO r_ubic;
+    v_ubic_cont:= v_ubic_cont+1;
+END LOOP;
+CLOSE c_th_ubic;
+---------
+COMMIT;
+RETURN v_serv_cont;
+END;
