@@ -1,0 +1,158 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import 'https://font.googleapis.com/css?family=Open+Sans';
+
+body{
+	margin: 0;
+	font-family: sans-serif;
+}
+header{
+	width: 100%;
+	background: #FBA919;
+}
+.contenedor{
+	color: black;
+	font-family: 'Yanone Kaffeesatz',sans-serif;
+	}
+
+#btn-menu{
+	display: none;
+	min-height: 300px;
+	max-width: 300px;
+
+}
+
+.hola{
+	width: 100%;
+	background: #FBA919;
+}
+.holaa{
+	width: 100%;
+	background: #FBA919;
+}
+.con{
+    width: 100%;
+	background: #FBA919;
+}
+.logo1{
+	width: 80px;
+	height: 28px;
+	margin-left:auto;
+	 background-image:url(../imagen/sale.png);
+	 background-size: 100% 100%;
+}
+
+.logo{
+	width: 92px;
+	height: 100px;
+	margin-left:auto;
+	 background-image:url(../imagen/logo.png);
+	 background-size: 100% 100%;
+}
+.h1{
+	position: absolute;
+	color: white;
+	font-family: 'Yanone Kaffeesatz',sans-serif;
+}
+.h2{
+	position: absolute;
+	color: black;
+	font-family: 'Yanone Kaffeesatz',sans-serif;
+}
+h3{
+
+	color: black;
+	font-family: 'Yanone Kaffeesatz',sans-serif;
+}
+
+
+header label{
+	display:block;
+	width: 30px;
+	height: 30px;
+	padding: 10px;
+	border-right: 1px solid #fff ;
+
+}
+header label:hover{
+	cursor: pointer;
+	background: rgba(0,0,0,0.3);
+}
+
+.menu ul{
+	margin:0;
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+}
+.menu li{
+	flex-grow: 1;
+	border-right: 1px solid #fff;
+}
+.menu li:hover{
+	background: rgba(0,0,0,0.3);
+}
+.menu li a{
+	display: block;
+	padding: 15px 20px;
+	color: #fff;
+	text-decoration: none;
+}
+
+@media(max-width:800px){
+	header label{
+	display: block;
+
+	}
+	.menu{
+	position: absolute;
+	background:  #FBA919;
+	width: 70%;
+	margin-left: -70%;
+	transition:all 0.5s;
+	}
+	.menu ul{
+	flex-direction: column;
+	}
+	.menu li{
+	border-top: 1px solid #fff;
+	}
+	#btn-menu:checked ~.menu{
+	margin:0;
+	}
+}
+
+.banner{
+	width: 500px;
+	height: 300px;
+	border: 3px solid red;
+    margin:auto;
+
+	 background-size: 100% 100%;
+
+	 animation:banner 10s infinite;
+	 animation-direction:alternate;
+}
+@keyframes banner{
+	 0%, 30%{
+	 background-image:url(../imagen/1.jpg);
+	 opacity:1;
+	 }
+	 31%,34%{
+	 opacity:0.1;
+	 }
+	 35%, 65%{
+	 background-image:url(../imagen/2.jpg);
+	 opacity:1;
+	 }
+	 66%,69%{
+	 opacity:0.1;
+	 }
+	 70%, 100%{
+	 background-image:url(../imagen/plantilla.jpg);
+	 opacity:1;
+	 }
+ }
+
+
+

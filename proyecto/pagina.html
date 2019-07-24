@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import 'https://font.googleapis.com/css?family=Open+Sans';
+
+body{
+	margin: 0;
+	font-family: sans-serif;
+}
+header{
+	width: 100%;
+	background: #FBA919;
+}
+.contenedor{
+	color: black;
+	font-family: 'Yanone Kaffeesatz',sans-serif;
+	}
+
+#btn-menu{
+	display: none;
+	min-height: 300px;
+	max-width: 300px;
+
+}
+
+.hola{
+	width: 100%;
+	background: #FBA919;
+}
+.holaa{
+	width: 100%;
+	background: #FBA919;
+}
+.con{
+    width: 100%;
+	background: #FBA919;
+}
+.logo1{
+	width: 80px;
+	height: 28px;
+	margin-left:auto;
+	 background-image:url(../imagen/xp.jpg);
+	 background-size: 100% 100%;
+}
+
+.logo{
+	width: 92px;
+	height: 100px;
+	margin-left:auto;
+	 background-image:url(../imagen/logo.png);
+	 background-size: 100% 100%;
+}
+.h1{
+	position: absolute;
+	color: white;
+	font-family: 'Yanone Kaffeesatz',sans-serif;
+}
+.h2{
+	position: absolute;
+	color: black;
+	font-family: 'Yanone Kaffeesatz',sans-serif;
+}
+h3{
+
+	color: black;
+	font-family: 'Yanone Kaffeesatz',sans-serif;
+}
+
+
+header label{
+	display:block;
+	width: 30px;
+	height: 30px;
+	padding: 10px;
+	border-right: 1px solid #fff ;
+
+}
+header label:hover{
+	cursor: pointer;
+	background: rgba(0,0,0,0.3);
+}
+
+.menu ul{
+	margin:0;
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+}
+.menu li{
+	flex-grow: 1;
+	border-right: 1px solid #fff;
+}
+.menu li:hover{
+	background: rgba(0,0,0,0.3);
+}
+.menu li a{
+	display: block;
+	padding: 15px 20px;
+	color: #fff;
+	text-decoration: none;
+}
+
+@media(max-width:800px){
+	header label{
+	display: block;
+
+	}
+ }
+
+</style>
+<html lang="es">
+<head>
+<title>Inicio</title>
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+
+<body>
+<div class="hola">
+<br>
+<font class="h1" size="8"> Servicio Hoteles y Restaurantes</font>
+<div class="logo">
+</div>
+</div>
+
+<header>
+<input type="checkbox" id="btn-menu">
+<label for="btn-menu"><img src="imagenes/logo.png" alt="" width="50" height="30" >
+</label>
+<nav class="menu">
+
+<ul>
+<li><a href="https://github.com/leonelparrales22/ProyectoGitHub">GitHub</a></li>
+
+
+<li><a href = ""> Proyecto JSF</a></li>
+
+<li><a href="https://choosealicense.com/licenses/gpl-3.0/">Licencia del repositorio</a></li>
+</ul>
+</nav>
+</header>
+<br><br>
+
+<div class="contenedor">
+
+<p><center><h3></h3>Se concentran en los aspectos de almacenamiento y busqueda de informacion en las bibliotecas digitales y proponen
+    la utilizacion de navegadores de Internet para descargar archivos planos del INEC con lo cual creamos la base de datos en Oracle, con los datos
+cargados en la base generamos tablas y graficos en jsf lo cual esta contenido en un repositorio de GitHub. </p></center>
+
+<p><center><h3></h3></center></p>
+     <center><label for="btn-menu"><img src="imagenes/xp.jpg" alt="" width="500" height="300"></label></center>
+</div>
+<br><br>
+<div class="banner">
+</div>
+<br><br>
+<div class="con">
+<br>
+    <font class="h5" size="4"><b>DESARROLLADORES</b></font></br>
+<font class="h5" size="4"> Diego Gonzalez, Leonel Parrlaes,Arnaldo Ortiz, Wilian Tapia</font>
+<div class="logo1">
+</div>
+</div>
+
+</body>
+</html>
